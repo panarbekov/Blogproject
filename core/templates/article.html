@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    Автор:<a href="{% url 'profile' article.author.profile.id %}">
+    <i> {{ article.author }}</i> 
+    <br></a>
+    
+    Создано: <b>{{ article.created_date }}</b>       
+    <h3>{{ article.title }}</h3>
+    <div>{{ article.text }}</div>
+    <hr>
+    <h4>Просмотры (атрибут): {{ article.views }}</h4>
+    <h4>Просмотры (читатели, многое ко многому):{{ article.readers.count }}</h4>
+    <hr>
+    <h4>Пользователи, прочитавшие эту статью:</h4>
+    {% for user in article.readers.all %}
+        <li>{{ user.username }}</li>
+    {% endfor %}
+
+{% endblock %}
