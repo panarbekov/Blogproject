@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from core.models import Article, Profile
 
 def homepage(request):
-    return render(request, "home.html")
+    articles = Article.objects.all()
+    return render(request, "home.html", {"articles": articles})
 
 def test(request):
     return render(request, "test.html")

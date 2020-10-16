@@ -8,5 +8,32 @@
     </h2>
 {% endblock %}
 {% block content %}
-    <h1>Это домашняя страница, новостного сайта(пробного проекта)</h1>
+    <table border = "2" > 
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Views</th>
+                <th>Publicated</th>
+                <th>Author</th>
+                <th>Crated</th>
+                <th>Updated</th>
+            </tr>
+
+        </thead> 
+        <tbody>
+            {% for article in articles %}
+            
+            <tr>
+                <td><a href="{% url 'article' article.id %}">{{ article.title }}</a></td>
+                <td>{{ article.title }}</td>
+                <td>{{ article.views }}</td>
+                <td>{{ article.publicated }}</td>
+                <td>{{ article.created_date }}</td>
+                <td>{{ article.updated_date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>       
+
+    </table>
+    
 {% endblock %}
