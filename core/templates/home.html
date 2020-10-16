@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block menu %}
+    <h2>
+        <a href="{% url 'articles' %}">Все статьи</a>
+        <a href="{% url 'top' %}">Топ 1</a>
+        <a href="{% url 'test' %}">Тест</a>
+        <a href="{% url 'contacts' %}">Контакты</a>         
+    </h2>
+{% endblock %}
+{% block content %}
+    <h1>Это домашняя страница, новостного сайта(пробного проекта)</h1>
+{% endblock %}

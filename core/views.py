@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from core.models import Article, Profile
 
 def homepage(request):
-    return HttpResponse("Hello, This is homepage of my first django project")
+    return render(request, "home.html")
 
 def test(request):
     return render(request, "test.html")
