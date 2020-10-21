@@ -45,10 +45,11 @@ class Profile(models.Model):
     
     user = models.OneToOneField(
         to=User,
-        on_delete=models.CASCADE,
+        on_delete= models.CASCADE,
         verbose_name="Пользователь",
         related_name = "profile")
 
     photo = models.ImageField(
-        null=True, blank=True
+        null=True, blank=True,
+        upload_to="profiles"
     )    

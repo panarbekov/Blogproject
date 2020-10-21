@@ -3,22 +3,26 @@ from core.models import Article, Profile
 
 class ArticleAdmin(admin.ModelAdmin):
     model = Article
-    list_display = [ "title", "views", 
+    list_display = [ 
+    "title", "views", 
     "publicated", "author",
-    "created_date", "updated_date"]
-    list_display_links = ["title", ]
+    "created_date", "updated_date"
+    ]
+    list_display_links = ["title", "author" ]
     list_editable = ["publicated"]
-    ordering = ["-views"]
+    ordering = ["views"]
     list_filter = ("publicated","author",
      "created_date" )
-    fields = ["title", "text", 
-    "created_date", "updated_date"]
+    # fields = ["title", "text", 
+    # "created_date", "updated_date"]
     readonly_fields = ["created_date", 
     "updated_date"]
-    list_per_page = 2
+    list_filter = ("publicated", "author", "created_date")
+    # list_per_page = 2
     search_fields = [
     "text", "title", "author__username", 
-    "author__first_name", "author__last_name"
+    "author__first_name", "author__last_name",
+    "created_date"
     ]
     
 admin.site.register(Article, ArticleAdmin)
