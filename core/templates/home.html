@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% block menu %}
     <h2>
-        <a href="{% url 'articles' %}">Все статьи</a>
-        <a href="{% url 'top' %}">Топ 1</a>
-        <a href="{% url 'test' %}">Тест</a>
-        <a href="{% url 'contacts' %}">Контакты</a>         
+        <a href="{% url 'articles' %}"><button>Все статьи</button></a>
+        <a href="{% url 'top' %}"><button>Топ 1</button></a>
+        <a href="{% url 'test' %}"><button>Тест</button></a>
+        <a href="{% url 'contacts' %}"><button>Контакты</button></a> 
+        <a href="{% url 'add' %}"><button>Добавить</button></a>        
     </h2>
 {% endblock %}
 {% block content %}

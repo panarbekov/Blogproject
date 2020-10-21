@@ -62,7 +62,7 @@ def edit(request, id):
     article = Article.objects.get(id=id)
 
     if request.user != article.author:
-        return HttpResponse("Атата, нельзя так делать!")
+        return HttpResponse("Не занимайтесь хакерством)))")
 
     if request.method == "POST":
         form = request.POST
