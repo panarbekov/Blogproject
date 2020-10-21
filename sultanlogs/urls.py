@@ -19,9 +19,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from core.views import *
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
+urlpatterns = [   
     path("", homepage, name="home"),
+    path('admin/', admin.site.urls),
     path("test/", test, name="test"),
     path("contacts/", contacts, name="contacts"),
     path("top/", top, name = "top" ),

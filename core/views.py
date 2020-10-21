@@ -3,6 +3,7 @@ from django.http import HttpResponse, Http404
 from django.contrib.auth.decorators import login_required
 from core.models import Article, Profile
 
+
 def homepage(request):
     articles = Article.objects.all()
     return render(request, "home.html", {"articles": articles})
