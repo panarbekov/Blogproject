@@ -1,33 +1,31 @@
 {% extends 'base.html' %}
 {% block menu %}
     <h2>
-        <a href="{% url 'articles' %}"><button>Все статьи</button></a>
-        <a href="{% url 'top' %}"><button>Топ 1</button></a>
-        <a href="{% url 'test' %}"><button>Тест</button></a>
-        <a href="{% url 'contacts' %}"><button>Контакты</button></a> 
-        <a href="{% url 'add' %}"><button>Добавить</button></a> 
-        <a href="http://127.0.0.1:8000/admin/"><button>Комната админа</button><a/>       
+        <a href="{% url 'articles' %}"><button class="btn btn-warning">Все статьи</button></a>
+        <a href="{% url 'top' %}"><button class="btn btn-warning">Топ 1</button></a>
+        <a href="{% url 'test' %}"><button class="btn btn-warning">Тест</button></a>
+        <a href="{% url 'contacts' %}"><button class="btn btn-warning">Контакты</button></a> 
+        <a href="{% url 'add' %}"><button class="btn btn-warning">Добавить</button></a> 
+        <a href="http://127.0.0.1:8000/admin/"><button class="btn btn-warning">Комната админа</button><a/>       
     </h2>
 {% endblock %}
 {% block content %}
-    <table border = "2" > 
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Views</th>
-                <th>Publicated</th>
-                <th>Author</th>
-                <th>Crated</th>
-                <th>Updated</th>
+    <table class="table" > 
+        <thead class="thead-dark">
+            <tr>               
+                <th scope="col">Title</th>
+                <th scope="col">Views</th>
+                <th scope="col">Publicated</th>
+                <th scope="col">Author</th>
+                <th scope="col">Crated</th>
+                <th scope="col">Updated</th>
             </tr>
-
         </thead> 
         <tbody>
             {% for article in articles %}
             
-            <tr>
-                <td><a href="{% url 'article' article.id %}">{{ article.title }}</a></td>
-                <td>{{ article.title }}</td>
+            <tr>               
+                <td><a href="{% url 'article' article.id %}" class="alert-link">{{ article.title }}</a></td>               
                 <td>{{ article.views }}</td>
                 <td>{{ article.publicated }}</td>
                 <td>{{ article.created_date }}</td>

@@ -4,18 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>SBlog</title>
     <link rel="shortcut icon" href="{% static 'logo.png' %}" type="image/x-icon">
 </head>
 <body>
     {% block menu %}
         <h2>
-            <a href="{% url 'articles' %}"><button>Все статьи</button></a>
-            <a href="{% url 'top' %}"><button>Топ 1</button></a>
-            <a href="{% url 'test' %}"><button>Тест</button></a>
-            <a href="{% url 'contacts' %}"><button>Контакты</button></a> 
-            <a href="{% url 'home' %}"><button>Домашняя страница</button></a>         
-            <a href="{% url 'add' %}"><button>Добавить</button></a>
+            <a href="{% url 'articles' %}"><button class="btn btn-warning"> Все статьи</button></a>
+            <a href="{% url 'top' %}"><button class="btn btn-warning">Топ 1</button></a>
+            <a href="{% url 'test' %}"><button class="btn btn-warning">Тест</button></a>
+            <a href="{% url 'contacts' %}"><button class="btn btn-warning">Контакты</button></a> 
+            <a href="{% url 'home' %}"><button class="btn btn-primary">Домашняя страница</button></a>         
+            <a href="{% url 'add' %}"><button class="btn btn-warning">Добавить</button></a>
         </h2>
     {% endblock %}
     
