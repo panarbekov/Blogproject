@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.views.generic import DetailView
+from django.views.generic import TemplateView
 from core.models import Article, Profile
 
 
@@ -21,6 +24,13 @@ def top(request):
     article = Article.objects.all().order_by("id").first()
     return render(request, "top.html", {"article": article})
 
+def user_fbv(request, id):
+    try:
+        user = User.objects.get(id=id)
+    except User.DoesNotExist:
+        raise Http404("Такой пользователь не существует!")
+    return HttpResponse(f"Пользователь{user}, статей {user.created_article.count()}")
+
 def article(request, id):
     try:
         article_object = Article.objects.get(id=id)
@@ -38,6 +48,29 @@ def article(request, id):
         article_object.save()
     return render(request, "article.html", {"article": article_object})
 
+class ArticleDetailView(DetailView):
+    template_name = "article_cbv.html"
+    queryset = Article.objects.all()
+
+    def post(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        article = context["article"]
+        article.delete()
+        return redirect(homepage)
+    
+    def get(self, request, *args, **kwargs):
+        super(ArticleDetailView, self).get(request, *args, **kwargs)
+        context = self.get_context_data(**kwargs)
+        article_object = context["article"]
+        article_object.views += 1
+        user = request.user    
+        if user.is_authenticated:
+            article_object.readers.add(user)
+            article_object.save()
+        return self.render_to_response(context)
+
+
+
 def profile(request,id):
     user_profile = Profile.objects.get(id=id)
     context = {"profile" : user_profile}
@@ -52,7 +85,8 @@ def add(request):
         form = request.POST
         article = Article(
             title=form["title"],
-            text=form["text"]
+            text=form["text"],
+            author=request.user
         )
         article.save()
         return redirect(homepage)
@@ -73,5 +107,22 @@ def edit(request, id):
         return redirect("article", id=id)
 
     return render(request, "edit.html", {"article": article})
+def another_test(request):
+    a = User.objects.first()
+    return render(request, "test-2.html", { "my_var": a })
 
-# Create your views here.
+
+class FirstUserDetailView(TemplateView):
+    template_name= "test-2.html"
+    
+    # def get(self, request, *args, **kwargs ):
+    #     a = User.objects.first()
+    #     context = self.get_context_data(**kwargs)
+    #     context["my_var"] = a
+    #     return self.render_to_response(context)
+    
+    def get_context_data(self, **kwargs):
+        kwargs.setdefault('view', self)
+        kwargs["my_var"]= User.objects.first()
+        return kwargs
+    
