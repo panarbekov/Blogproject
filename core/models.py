@@ -29,6 +29,12 @@ class Article(models.Model):
         related_name="readed_article"
     )
 
+    rating = models.DecimalField(
+        max_digits=8,
+        decimal_places=2,
+        default=0,
+    )
+
 class Profile(models.Model):
     vk = models.CharField(
         max_length=255,
