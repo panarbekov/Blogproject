@@ -81,7 +81,7 @@ def profile(request,id):
     context = {"profile" : user_profile}
     return render(request, "profile.html", context)
 
-@login_required
+
 def add(request):
     if request.method == "GET":
         # ...
@@ -97,7 +97,7 @@ def add(request):
         return redirect(homepage)
 
 
-@login_required
+
 def edit(request, id):
     article = Article.objects.get(id=id)
 
